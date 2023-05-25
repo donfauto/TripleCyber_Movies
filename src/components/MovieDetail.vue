@@ -9,7 +9,6 @@
           <p class="movie-release-date"><span>Release:</span> {{ formatDate(movie.release_date) }}</p>
           <p class="movie-rating"><span>Rating:</span> {{ movie.vote_average }}/10</p>
           <p class="movie-overview">{{ movie.overview }}</p>
-          <!-- <button @click="addToFavorites(movie)" class="btn-add-favorite">Agregar a favoritos</button> -->
         </div>
       </div>
     </div>
@@ -66,6 +65,10 @@
   color: white;
   text-decoration: none;
 }
+.btn-back:hover{
+  text-decoration:underline;
+}
+
 .btn-back-title{
   font-size: 24px;
   margin-bottom: 20px;
@@ -83,7 +86,8 @@
   }
   
   .movie-container {
-    --display: flex;
+    /* display: flex; */
+    position: relative;
     align-items: center;
   }
   
@@ -96,9 +100,14 @@
   .movie-details {
     flex-grow: 1;
     height: 80px;
-    --margin: 20px;
+    padding: 0 !important;
+    /* margin: 20px; */
   }
-  
+
+  .movie-container .movie-details{
+    height: auto;
+  }
+
   .movie-title {
     font-size: 18px;
     margin-bottom: 5px;
@@ -120,6 +129,7 @@
     margin-top: 10px;
     font-size: 14px;
     color: rgb(197, 197, 197);
+    text-align: justify;
   }
   
   .btn-add-favorite {
@@ -129,6 +139,10 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    width: 100%;
+  }
+  .remove{
+    background-color: #0056b3  !important;
   }
   
   .btn-add-favorite:hover {

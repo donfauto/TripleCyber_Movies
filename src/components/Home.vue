@@ -1,10 +1,10 @@
 <template>
   <div class="home">
-    <h1 class="page-title">Lista top películas</h1>
+    <h1 class="page-title">{{ sortByFavorites ? 'Lista top Favoritas' : 'Lista top Películas' }}</h1>
     <div class="favorites-filter">
       <button @click="toggleSortByFavorites" class="sort-button">
         <font-awesome-icon icon="star"/>
-        {{ sortByFavorites ? 'Mostrar todas' : 'Mostrar favoritos' }}
+        {{ sortByFavorites ? 'Mostrar todas' : 'Mostrar favoritas' }}
       </button>
     </div>
     <ul class="movie-list">
@@ -29,8 +29,8 @@
           </div>
         </router-link>
         <div class="movie-details-btn">
-            <button v-if="isFavorite(movie)" @click="removeFromFavorites(movie)" class="btn-add-favorite">Quitar de favoritos</button>
-            <button v-if="!isFavorite(movie)" @click="addToFavorites(movie)" class="btn-add-favorite">Agregar a favoritos</button>
+            <button v-if="isFavorite(movie)" @click="removeFromFavorites(movie)" class="btn-add-favorite remove">Quitar de favoritas</button>
+            <button v-if="!isFavorite(movie)" @click="addToFavorites(movie)" class="btn-add-favorite">Agregar a favoritas</button>
           </div>
       </li>
     </ul>
@@ -131,7 +131,15 @@ export default {
 }
 
 .sort-button{
+  border: 1px solid white;
+  cursor: pointer;
   font-size: 18px;
+  padding: 5px;
+  border-radius: 10px;
+}
+.sort-button:hover{
+  background-color: #0c1537;
+  color: white;
 }
 
 .favorite-star {
@@ -152,17 +160,20 @@ export default {
 }
 body{
   background-color: #080f28;
+  padding: 20px;
+
 }
 
 .movie-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
+  padding: 20px;
 }
 
 .movie-item {
   flex: 0 0 150px;
-  margin: 10px;
+  margin: 20px;
   border-radius: 5px;
   color: #FFF;
   list-style: none;
